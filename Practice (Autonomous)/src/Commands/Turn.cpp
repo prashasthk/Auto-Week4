@@ -18,7 +18,7 @@ anglePID(new WVPIDController(angleKp, angleKi, angleKd, setpoint, false)) {
 // Called just before this Command runs the first time
 void Turn::Initialize() {
 drive->resetEncoders();
-drive -> gyroReset();
+drive->gyroReset();
 
 }
 

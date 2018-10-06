@@ -21,8 +21,8 @@ void DriveForward::Initialize() {
 void DriveForward::Execute(){
 	 average_encoderDistance = (drive->leftDistance() + drive->rightDistance())/2;
 	 power = drivingPID->Tick(average_encoderDistance);
-	 double error = drive->getAngle() - angle;
-	drive->tankDrive(0.15 + power + error/10, 0.15 + power - error/10);
+	 double angleError = drive->getAngle() - angle;
+	drive->tankDrive(0.15 + power + angleError/10, 0.15 + power - angleError/10);
 	}
 
 
@@ -30,7 +30,7 @@ void DriveForward::Execute(){
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveForward::IsFinished() {
-	return Math.fabs(average_encoderDistance - setpoint) < 0.05;
+	return fabs(average_encoderDistance - setpoint) < 0.05;
 }
 // Called once after isFinished returns true
 void DriveForward::End() {

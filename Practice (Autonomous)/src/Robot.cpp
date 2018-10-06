@@ -1,5 +1,3 @@
-
-
 #include <Commands/Command.h>
 #include <Commands/Scheduler.h>
 #include <IterativeRobot.h>
@@ -12,6 +10,7 @@
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
+		CommandBase::initialize();
 		//chooser.AddDefault("Default Auto", new ExampleCommand());
 		chooser.AddObject("Top", new Top_Red_Pathway());
 		chooser.AddObject("Mid", new MiddletoTop_Pathway());
