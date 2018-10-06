@@ -3,7 +3,7 @@
 
 
 DriveForward::DriveForward(double distance) :
-drivingPID(new PIDController(distKp, distKi, distKd, setpoint, false)){
+drivingPID(new WVPIDController(distKp, distKi, distKd, setpoint, false)){
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	setpoint = distance;
@@ -30,7 +30,7 @@ void DriveForward::Execute(){
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveForward::IsFinished() {
-	return fabs(average_encoderDistance - setpoint) < 0.05;
+	return Math.fabs(average_encoderDistance - setpoint) < 0.05;
 }
 // Called once after isFinished returns true
 void DriveForward::End() {

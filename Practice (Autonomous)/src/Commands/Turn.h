@@ -8,8 +8,8 @@
 #pragma once
 
 #include <Commands/Command.h>
+#include <Utilities/WVPIDController.h>
 #include "../CommandBase.h"
-#include "../Utilities/PIDController.h"
 
 class Turn : public CommandBase{
 private:
@@ -21,7 +21,7 @@ double angleKd = 0;
 double power = 0;
 double average_encoderVal;
 double angle = 0;
-PIDController * anglePID;
+WVPIDController * anglePID;
 public:
 	Turn(double angleInput);
 	void Initialize() override;

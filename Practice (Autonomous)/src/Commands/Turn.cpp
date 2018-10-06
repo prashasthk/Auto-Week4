@@ -7,7 +7,8 @@
 
 #include "Turn.h"
 
-Turn::Turn(double angleInput) : anglePID(new PIDController(angleKp, angleKi, setpoint, false)) {
+Turn::Turn(double angleInput):
+anglePID(new WVPIDController(angleKp, angleKi, angleKd, setpoint, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	setpoint = angleInput;

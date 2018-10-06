@@ -1,8 +1,7 @@
 #ifndef DriveForward_H
 #define DriveForward_H
-
+#include <Utilities/WVPIDController.h>
 #include "../CommandBase.h"
-#include "../Utilities/PIDController.h"
 
 class DriveForward : public CommandBase {
 private:
@@ -14,7 +13,7 @@ double angle = 0;
 double average_encoderDistance = 0;
 double power = 0;
 
-PIDController * drivingPID;
+WVPIDController * drivingPID;
 
 
 

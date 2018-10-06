@@ -1,4 +1,4 @@
-#include <memory>
+
 
 #include <Commands/Command.h>
 #include <Commands/Scheduler.h>
@@ -13,12 +13,9 @@ class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
 		//chooser.AddDefault("Default Auto", new ExampleCommand());
-		chooser.AddObject("My Auto", new Pink_Pathway());
-		chooser.AddObject("My Auto", new Top_Red_Pathway());
-		chooser.AddObject("My Auto", new MiddletoTop_Pathway());
-		chooser.AddObject("My Auto", new MiddletoBottom_Pathway());
-		chooser.AddObject("My Auto", new Bottom_Red_Pathway());
-		chooser.AddObject("My Auto", new Blue_Pathway());
+		chooser.AddObject("Top", new Top_Red_Pathway());
+		chooser.AddObject("Mid", new MiddletoTop_Pathway());
+		chooser.AddObject("Bottom", new Bottom_Red_Pathway());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 	}
 private:
