@@ -7,7 +7,6 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include "Commands/Pink_Pathway.h"
-#include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 
 class Robot: public frc::IterativeRobot {
@@ -22,6 +21,9 @@ public:
 		chooser.AddObject("My Auto", new Blue_Pathway());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 	}
+private:
+
+
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -48,6 +50,42 @@ public:
 	 * to the if-else structure below with additional strings & commands.
 	 */
 	void AutonomousInit() override {
+		autonomousCommand = chooser.GetSelected();
+		std::string gameData;
+		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		std::string autoString = chooser.GetName();
+		if (autoString == "Mid") {
+			if (gameData.length > 0) {
+				if (gameData[0] == 'L') {
+					autonomousCommand.reset(new MiddletoTop_Pathway());
+				}
+				else {
+				autonomousCommand.reset(new MiddletoBottom_Pathway());
+				}
+			}
+		}
+		if (autoString == "Top") {
+			if (gameData.length > 0) {
+				if (gameData[0] == 'L') {
+					autonomousCommand.reset(new Pink_Pathway());
+				}
+				else {
+					autonomousCommand.reset(new Top_Red_Pathway());
+				}
+			}
+		}
+
+		if (autoString == "Bottom") {
+			if (gameData.length > 0) {
+				if (gameData[0] == 'L') {
+					autonomousCommand.reset(new Bottom_Red_Pathway());
+				}
+				else {
+					autonomousCommand.reset(new Blue_Pathway());
+				}
+			}
+		}
+
 		/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
 		if (autoSelected == "My Auto") {
 			autonomousCommand.reset(new MyAutoCommand());
